@@ -1,0 +1,109 @@
+# Adventure-quest
+#include <iostream> 
+#include <string>
+
+struct Player{
+    std::string name;  
+    int health;        
+    int xp;            
+    std::string inventory[10];  
+    int inventoryCount = 0;
+};
+
+
+int main()
+{
+    std::cout << "Welcome to Skypiea!" << std::endl;
+
+   
+    Player player;
+    player.health = 100; // Assign a default value for HP
+
+    
+    std::cout << "Please enter your name: ";
+    std::cin >> player.name;
+
+    std::cout << "Welcome " << player.name << " to Skypiea!" << std::endl;
+
+    
+    int choice;
+    
+    int nestedChoice;
+
+    int exploring;
+
+    bool exploring = true;
+    
+    while(exploring) {
+
+        
+        std::cout << "--------------------------------------------------------" << std::endl;
+        std::cout << "Where will " << player.name << " go next?" << std::endl;
+        std::cout << "1. The Arch" << std::endl;
+        std::cout << "2. Grandline" << std::endl;
+        std::cout << "3. The All Blue" << std::endl;
+        std::cout << "Please enter your choice: ";
+        
+        std::cin >> choice;
+
+       
+        switch(choice) {
+            
+            case 1:
+                std::cout << "You chose The Arch." << std::endl;
+                break;
+            
+            case 2:
+                std::cout << "You chose Grandline." << std::endl;
+                break;
+            
+            case 3:
+                std::cout << player.name << " arrives at the All Blue. It is one of the most beautiful seas that" << player.name << " has seen. They hear a mysterious noise from the clear water. They can either: " << std::endl;
+                std::cout << "1. Stay quiet and listen" << std::endl;
+                std::cout << "2. Walk towards the noise" << std::endl;
+                std::cout << "Please enter your choice: ";
+
+                
+                std::cin >> nestedChoice;
+
+                
+                if (nestedChoice == 1)
+                {
+                    std::cout << "Remaining silent, " << player.name << " hears whispers of the merfolk below, but nothing happens." << std::endl;
+                }
+                
+                else if (nestedChoice == 2)
+                {
+                    std::cout << "Walking towrds the noise " << player.name
+                            << " finds a Glittering Blue Pearl."
+                            << std::endl;
+                    player.inventory[player.inventoryCount] = "Glittering Blue Pearl";
+                    player.inventoryCount++;
+
+                    std::cout << player.name << "'s Inventory:" << std::endl;
+                    
+                    for (int i = 0; i < player.inventoryCount; i++)
+                    {
+                        
+                        if (!player.inventory[i].empty())
+                        {
+                            // Output the item in the inventory slot
+                            std::cout << "- " << player.inventory[i] << std::endl;
+                        }
+                    }
+
+                }
+                break;
+            
+            case 4:
+                exploring = false;
+                break;
+            
+            default:
+                std::cout << "You did not enter a valid choice." << std::endl;
+                continue; 
+        }
+    }
+
+    return 0;
+}
